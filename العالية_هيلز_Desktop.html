@@ -1457,8 +1457,8 @@ function mobNav(action, el) {
 // ══════════════════════════════════════════════════════════════
 //  GOOGLE SHEETS SYNC  (keys are prefixed "v2_" for the new plan numbering)
 // ══════════════════════════════════════════════════════════════
-const SYNC_KEY = 'aalia_sheet_url';
-let sheetUrl = (()=>{try{return localStorage.getItem(SYNC_KEY);}catch(e){return null;}})() || 'https://script.google.com/macros/s/AKfycbzYC7Sddlx53pM6ewOqeLW-Ac106vxUvfQHg1JP9YuW5KjPXMzI52my4IFFkyiPwSHb/exec';
+const SYNC_KEY = 'aalia_sheet_url_v3'; // new sheet (Oct 2026) — old saved links are ignored
+let sheetUrl = (()=>{try{return localStorage.getItem(SYNC_KEY);}catch(e){return null;}})() || 'https://script.google.com/macros/s/AKfycbwUJrOkgeYUleTQg4d39bEE37jsliTxpybcafUoaUEWywRZhyg4oed5yineHfhlhnEp/exec';
 let syncTimer = null;
 
 function setSyncUI(state, text) {
@@ -1486,11 +1486,11 @@ function saveUrl() {
   closeCfg();
   loadFromSheet();
 }
-async function loadFromSheet() {
+async function loadFromSheet(keepStatus) {
   if(!sheetUrl) { setSyncUI('error','اضغط للإعداد'); return; }
-  setSyncUI('syncing','جارٍ التزامن...');
+  if(!keepStatus) setSyncUI('syncing','جارٍ التزامن...');
   try {
-    const res = await fetch(sheetUrl + '?action=get', { method: 'GET', mode: 'cors', redirect: 'follow' });
+    const res = await fetch(sheetUrl + '?action=get&t=' + Date.now(), { method: 'GET', mode: 'cors', redirect: 'follow' });
     const json = await res.json();
     if(json.success && json.data) {
       let changed=false;
@@ -1501,10 +1501,10 @@ async function loadFromSheet() {
       });
       if(changed){ save(); BLOCKS.forEach(b=>{const tb=document.getElementById('tb-'+b.id);if(tb&&tb.dataset.ready)fillTable(b.id);refreshB(b.id);}); colorAll(); updateStats(); renderInfo(); filterAll(); }
     }
-    setSyncUI('synced', 'متزامن ✓');
+    if(!keepStatus) setSyncUI('synced', 'متزامن ✓');
   } catch(e) {
-    setSyncUI('synced', 'متزامن ✓');
-    console.info('Sheet read blocked by browser - using local state');
+    if(!keepStatus) setSyncUI('error', 'غير متصل بالشيت');
+    console.warn('Sheet read failed', e);
   }
 }
 async function saveToSheet(key, status) {
@@ -1512,9 +1512,14 @@ async function saveToSheet(key, status) {
   setSyncUI('syncing','جارٍ الحفظ...');
   try {
     const url = sheetUrl + '?action=set&key=' + encodeURIComponent(SK+key) + '&status=' + encodeURIComponent(status);
-    await fetch(url, {method:'GET', mode:'no-cors'});
+    const res = await fetch(url, {method:'GET', redirect:'follow'});
+    const json = await res.json();
+    if(!json.success) throw new Error(json.error||'save failed');
     setSyncUI('synced','محفوظ ✓');
-  } catch(e) { setSyncUI('error','فشل الحفظ'); }
+  } catch(e) {
+    setSyncUI('error','فشل الحفظ — تحقق من الاتصال');
+    loadFromSheet(true);   // revert to the shared state in the sheet
+  }
 }
 async function bulkSaveToSheet(updates) {
   if(!sheetUrl || !Object.keys(updates).length) return;
@@ -1524,10 +1529,15 @@ async function bulkSaveToSheet(updates) {
     const ent=Object.entries(updates);
     for(let i=0;i<ent.length;i+=40){
       const params = ent.slice(i,i+40).map(([k,v])=>encodeURIComponent(k)+'='+encodeURIComponent(v)).join('&');
-      await fetch(sheetUrl + '?action=bulk&' + params, {method:'GET', mode:'no-cors'});
+      const res = await fetch(sheetUrl + '?action=bulk&' + params, {method:'GET', redirect:'follow'});
+      const json = await res.json();
+      if(!json.success) throw new Error(json.error||'save failed');
     }
     setSyncUI('synced','محفوظ ✓');
-  } catch(e) { setSyncUI('error','فشل الحفظ'); }
+  } catch(e) {
+    setSyncUI('error','فشل الحفظ — تحقق من الاتصال');
+    loadFromSheet(true);
+  }
 }
 function startAutoSync() {
   if(syncTimer) clearInterval(syncTimer);
@@ -1538,6 +1548,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setSyncUI('syncing','جارٍ التزامن...');
   loadFromSheet().then(startAutoSync);
 });
+// refresh as soon as the user comes back to the tab/app (phones pause timers)
+document.addEventListener('visibilitychange', () => { if(document.visibilityState==='visible') loadFromSheet(); });
 
 </script>
 </body>
