@@ -654,9 +654,101 @@ tbody tr.row-sel td{box-shadow:inset 0 0 0 9999px rgba(184,149,58,.18)}
 .hov-shape{fill:rgba(224,192,96,.35);stroke:#062830;stroke-width:2;vector-effect:non-scaling-stroke;pointer-events:none}
 .numlbl.hov text{fill:#062830;stroke:#e0c060;stroke-width:4px}
 
+
+/* ===== AUTH / ROLES ===== */
+.top-pills{position:fixed;top:12px;left:16px;display:flex;align-items:center;gap:6px;z-index:999;direction:rtl}
+.top-pills .sync-status{position:static}
+.u-chip{display:flex;align-items:center;gap:6px;font-family:'Tajawal',sans-serif;font-size:11px;padding:4px 6px 4px 10px;border-radius:20px;background:#fff;border:1px solid var(--gray-200);color:var(--teal-800);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.u-chip .u-role{font-weight:800;padding:2px 8px;border-radius:12px;background:#e6f3f5;color:var(--teal-700)}
+.u-chip .u-role.edit{background:#fdf3dd;color:#8a6020}.u-chip .u-role.admin{background:#0d4a52;color:#fff}
+.u-chip button{font-family:inherit;font-size:11px;border:none;background:#f2f6f7;color:var(--teal-700);padding:3px 9px;border-radius:12px;cursor:pointer;position:relative}
+.u-chip button:hover{background:#e3edef}
+.u-chip .u-mail{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr}
+.u-badge{position:absolute;top:-6px;left:-6px;background:#dc2626;color:#fff;border-radius:10px;font-size:10px;min-width:16px;height:16px;line-height:16px;text-align:center;padding:0 4px}
+body:not(.can-edit) .edit-only,body:not(.can-edit) .bulk-sel{display:none!important}
+body:not(.can-edit) .mi-st button{pointer-events:none}
+body:not(.can-edit) .mi-st button:not(.on){display:none}
+body:not(.can-edit) .sbadge{cursor:default}
+body:not(.is-admin) .admin-only{display:none!important}
+body:not(.is-admin) .sync-status{cursor:default}
+body.locked{overflow:hidden}
+body.locked .main,body.locked .sb,body.locked .mob-nav,body.locked .top-pills{filter:blur(6px);pointer-events:none;user-select:none}
+.auth-ov{position:fixed;inset:0;z-index:2000;background:rgba(6,40,48,.72);display:none;align-items:center;justify-content:center;padding:16px;font-family:'Tajawal',sans-serif;direction:rtl}
+.auth-ov.open{display:flex}
+.auth-card{width:100%;max-width:380px;background:#fff;border-radius:18px;padding:28px 24px;box-shadow:0 20px 60px rgba(0,0,0,.35);text-align:center}
+.auth-card h3{font-size:20px;color:var(--teal-800);margin:6px 0 4px;font-weight:800}
+.auth-card p{font-size:13px;color:var(--gray-500);line-height:1.7;margin:0 0 16px}
+.auth-card input{width:100%;box-sizing:border-box;font-family:'Tajawal',sans-serif;font-size:15px;padding:11px 14px;border:1.5px solid var(--gray-200);border-radius:10px;margin-bottom:10px;outline:none}
+.auth-card input:focus{border-color:var(--teal-500)}
+.auth-card input.ltr{direction:ltr;text-align:center}
+.auth-card input.code{letter-spacing:8px;font-size:22px;font-weight:800}
+.auth-btn{width:100%;font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;padding:11px;border:none;border-radius:10px;cursor:pointer;color:#fff;background:linear-gradient(135deg,#268a9a,#155f6a)}
+.auth-btn:disabled{opacity:.6;cursor:wait}
+.auth-link{display:inline-block;margin-top:12px;font-size:12px;color:var(--teal-600);cursor:pointer;background:none;border:none;font-family:inherit}
+.auth-err{color:#dc2626;font-size:12px;min-height:16px;margin-bottom:6px}
+.auth-ico{width:56px;height:56px;border-radius:16px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;background:#e6f3f5}
+.auth-step{display:none}.auth-step.on{display:block}
+.usr-ov{position:fixed;inset:0;z-index:1500;background:rgba(6,40,48,.55);display:none;align-items:center;justify-content:center;padding:16px;font-family:'Tajawal',sans-serif;direction:rtl}
+.usr-ov.open{display:flex}
+.usr-card{width:100%;max-width:640px;max-height:86vh;overflow:auto;background:#fff;border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.usr-card h3{margin:0 0 4px;color:var(--teal-800);font-size:18px}
+.usr-sec{font-size:12px;font-weight:800;color:var(--teal-600);margin:16px 0 8px}
+.usr-row{display:flex;align-items:center;gap:8px;padding:10px;border:1px solid var(--gray-200);border-radius:10px;margin-bottom:8px;flex-wrap:wrap}
+.usr-row.pend{background:#fffbeb;border-color:#fcd34d}
+.usr-who{flex:1;min-width:180px}.usr-who b{display:block;font-size:14px;color:var(--gray-800)}
+.usr-who span{font-size:12px;color:var(--gray-500);direction:ltr;display:inline-block}
+.usr-row select{font-family:inherit;font-size:12px;padding:5px 8px;border-radius:8px;border:1px solid var(--gray-200)}
+.usr-row button{font-family:inherit;font-size:12px;padding:6px 10px;border-radius:8px;border:none;cursor:pointer}
+.ub-view{background:#e6f3f5;color:#155f6a}.ub-edit{background:#fdf3dd;color:#8a6020}.ub-rej{background:#fef2f2;color:#dc2626}.ub-del{background:transparent;color:#9ca3af}
+@media (min-width:769px){.topbar{padding-left:380px!important}}
+@media (max-width:768px){.top-pills{top:auto;bottom:calc(74px + env(safe-area-inset-bottom));left:8px}.u-chip .u-mail{display:none}}
 </style>
 </head>
-<body>
+<body class="locked">
+
+<!-- LOGIN -->
+<div class="auth-ov" id="authOv">
+  <div class="auth-card">
+    <div class="auth-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#155f6a" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+    <h3>العالية هيلز</h3>
+    <div class="auth-step on" id="as-email">
+      <p>أدخل بريدك الإلكتروني لتسجيل الدخول.<br>سيصلك رمز تحقق على الإيميل.</p>
+      <input id="aEmail" class="ltr" type="email" placeholder="name@example.com" autocomplete="email" onkeydown="if(event.key==='Enter')authStart()">
+      <input id="aName" type="text" placeholder="الاسم الكامل" style="display:none" onkeydown="if(event.key==='Enter')authStart()">
+      <div class="auth-err" id="aErr1"></div>
+      <button class="auth-btn" id="aBtn1" onclick="authStart()">متابعة</button>
+    </div>
+    <div class="auth-step" id="as-code">
+      <p>أرسلنا رمزاً من 6 أرقام إلى<br><b id="aMailShow" style="direction:ltr;display:inline-block"></b></p>
+      <input id="aCode" class="ltr code" type="text" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="one-time-code" onkeydown="if(event.key==='Enter')authVerify()">
+      <div class="auth-err" id="aErr2"></div>
+      <button class="auth-btn" id="aBtn2" onclick="authVerify()">دخول</button>
+      <button class="auth-link" onclick="authStart(true)">إعادة إرسال الرمز</button> ·
+      <button class="auth-link" onclick="authStep('email')">تغيير الإيميل</button>
+    </div>
+    <div class="auth-step" id="as-pending">
+      <p>تم إرسال طلب الدخول إلى المدير ✓<br>ستصلك رسالة على الإيميل عند الموافقة، ثم ادخل بنفس الإيميل.</p>
+      <button class="auth-btn" onclick="authStart()">تحقق من حالة الطلب</button>
+      <button class="auth-link" onclick="authStep('email')">استخدام إيميل آخر</button>
+    </div>
+    <div class="auth-step" id="as-rejected">
+      <p>عذراً، لم تتم الموافقة على طلب الدخول لهذا الإيميل.<br>تواصل مع إدارة المشروع.</p>
+      <button class="auth-link" onclick="authStep('email')">استخدام إيميل آخر</button>
+    </div>
+  </div>
+</div>
+
+<!-- USERS (admin) -->
+<div class="usr-ov" id="usrOv" onclick="if(event.target===this)closeUsers()">
+  <div class="usr-card">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <h3>المستخدمون والصلاحيات</h3>
+      <button class="btn btn-g" onclick="closeUsers()">إغلاق</button>
+    </div>
+    <div style="font-size:12px;color:var(--gray-500)">مستعرض = يشاهد فقط · تعديل = يغيّر حالات القطع · مدير = تعديل + إدارة المستخدمين</div>
+    <div id="usrList"><div style="padding:20px;text-align:center;color:var(--gray-500)">جارٍ التحميل...</div></div>
+  </div>
+</div>
 
 
 <!-- MOBILE BOTTOM NAV -->
@@ -677,7 +769,7 @@ tbody tr.row-sel td{box-shadow:inset 0 0 0 9999px rgba(184,149,58,.18)}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     تصدير
   </div>
-  <div class="mn-item" onclick="mobNav('reset',this)">
+  <div class="mn-item edit-only" onclick="mobNav('reset',this)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.36"/></svg>
     تعيين
   </div>
@@ -694,9 +786,12 @@ tbody tr.row-sel td{box-shadow:inset 0 0 0 9999px rgba(184,149,58,.18)}
 
 
 <!-- Sync Status Indicator -->
-<div class="sync-status synced" id="syncStatus" onclick="openCfg()" title="إعدادات المزامنة">
+<div class="top-pills">
+<div class="u-chip" id="uChip" style="display:none"><span class="u-role" id="uRole"></span><span class="u-mail" id="uMail"></span><button class="admin-only" onclick="openUsers()">المستخدمين<span class="u-badge" id="uPend" style="display:none"></span></button><button onclick="authLogout()">خروج</button></div>
+<div class="sync-status synced" id="syncStatus" onclick="if(isAdmin())openCfg()" title="حالة المزامنة">
   <span class="sync-dot" id="syncDot"></span>
   <span id="syncTxt">غير مرتبط</span>
+</div>
 </div>
 
 <!-- Config Modal -->
@@ -744,7 +839,7 @@ tbody tr.row-sel td{box-shadow:inset 0 0 0 9999px rgba(184,149,58,.18)}
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       تصدير CSV
     </div>
-    <div class="nav-item" onclick="resetAll()">
+    <div class="nav-item edit-only" onclick="resetAll()">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.36"/></svg>
       إعادة تعيين
     </div>
@@ -1000,6 +1095,7 @@ function swTab(){}
 
 // ── MODAL ────────────────────────────────────────────────────────────────────
 function openModal(bid,pn){
+  if(!canEdit()){toast('صلاحيتك: عرض فقط');return;}
   curModal={bid,pn}; curSt=getSt(bid,pn);
   document.getElementById('msub').textContent=(bid==='x'?'خارج البلكات':'البلك '+bid)+' — القطعة '+pn;
   selSt(curSt);
@@ -1022,6 +1118,7 @@ function closeModal(e){
 
 // ── STATUS CHANGES (single / bulk) ───────────────────────────────────────────
 function changeStatus(pns,status){
+  if(!canEdit()){toast('صلاحيتك: عرض فقط');return;}
   const upd={}, touched=new Set();
   pns.forEach(pn=>{const p=PBY[pn];if(!p)return;ST[p.bid+'_'+pn]=status;upd[SK+p.bid+'_'+pn]=status;touched.add(p.bid);});
   save();
@@ -1099,6 +1196,7 @@ function exportCSV(){
   a.download='العالية_هيلز.csv'; a.click();
 }
 function resetAll(){
+  if(!canEdit()){toast('صلاحيتك: عرض فقط');return;}
   if(!confirm('إعادة تعيين جميع الحالات؟'))return;
   ST={}; save(); SEL.clear(); renderAll();
 }
@@ -1312,7 +1410,7 @@ function _renderInfo(box){
       <div class="mi-c"><div class="mi-l">متوسط المساحة</div><div class="mi-v">${fmt(Math.round(area/list.length*100)/100)}</div></div>
     </div>
     <div class="mi-chips">${list.sort((a,b)=>a.n-b.n).map(p=>`<span class="mi-chip" title="إزالة من التحديد" onclick="selectPlot('${p.n}',true)">${p.n} ✕</span>`).join('')}</div>
-    <div class="mi-sec">تغيير حالة القطع المحددة</div>
+    <div class="mi-sec edit-only">تغيير حالة القطع المحددة</div>
     <div class="mi-st">${['available','sold','reserved'].map(s=>`<button class="${s}" onclick="if(confirm('تغيير حالة ${list.length} قطعة إلى «${STL[s]}»؟'))changeStatus([...SEL],'${s}')">${STL[s]}</button>`).join('')}</div>
     <div class="mi-acts"><button onclick="clearSel()">إلغاء التحديد</button></div>`;
 }
@@ -1455,12 +1553,186 @@ function mobNav(action, el) {
 }
 
 // ══════════════════════════════════════════════════════════════
-//  GOOGLE SHEETS SYNC  (keys are prefixed "v2_" for the new plan numbering)
+//  GOOGLE SHEETS SYNC + LOGIN & PERMISSIONS
+//  (keys are prefixed "v2_" for the new plan numbering)
 // ══════════════════════════════════════════════════════════════
-const SYNC_KEY = 'aalia_sheet_url_v3'; // new sheet (Oct 2026) — old saved links are ignored
+const SYNC_KEY = 'aalia_sheet_url_v3';
+const AUTH_KEY = 'aalia_auth_v1';
 let sheetUrl = (()=>{try{return localStorage.getItem(SYNC_KEY);}catch(e){return null;}})() || 'https://script.google.com/macros/s/AKfycbwUJrOkgeYUleTQg4d39bEE37jsliTxpybcafUoaUEWywRZhyg4oed5yineHfhlhnEp/exec';
 let syncTimer = null;
+let AUTH = (()=>{try{return JSON.parse(localStorage.getItem(AUTH_KEY)||'null');}catch(e){return null;}})();
+let authEmail = '';
+const ROLE_L = {view:'مستعرض', edit:'تعديل', admin:'مدير', pending:'بانتظار الموافقة', rejected:'مرفوض'};
 
+function canEdit(){ return !!AUTH && (AUTH.role==='edit' || AUTH.role==='admin'); }
+function isAdmin(){ return !!AUTH && AUTH.role==='admin'; }
+function saveAuth(){ try{ AUTH ? localStorage.setItem(AUTH_KEY, JSON.stringify(AUTH)) : localStorage.removeItem(AUTH_KEY); }catch(e){} }
+
+async function api(action, data) {
+  const body = Object.assign({action, token: AUTH && AUTH.token}, data||{});
+  const res = await fetch(sheetUrl, {method:'POST', redirect:'follow',
+    headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(body)});
+  const j = await res.json();
+  if (j.auth) {
+    if (j.auth === 'forbidden') { toast('ليست لديك صلاحية لهذا الإجراء'); loadFromSheet(true); }
+    else { if (j.auth === 'revoked') toast('تم إيقاف صلاحية الدخول لهذا الحساب'); authReset(); }
+    const er = new Error('auth:' + j.auth); er.isAuth = true; throw er;
+  }
+  return j;
+}
+
+// ── roles UI ─────────────────────────────────────────────────
+function applyRole() {
+  const b = document.body;
+  b.classList.toggle('can-edit', canEdit());
+  b.classList.toggle('is-admin', isAdmin());
+  b.classList.toggle('locked', !AUTH);
+  const chip = document.getElementById('uChip');
+  if (AUTH) {
+    chip.style.display = 'flex';
+    const r = document.getElementById('uRole');
+    r.textContent = ROLE_L[AUTH.role] || AUTH.role; r.className = 'u-role ' + AUTH.role;
+    document.getElementById('uMail').textContent = AUTH.name || AUTH.email;
+    document.getElementById('uMail').title = AUTH.email;
+  } else chip.style.display = 'none';
+  try { renderInfo(); } catch(e) {}
+}
+function setRoleFromServer(j) {
+  if (!AUTH || !j || !j.role) return;
+  if (AUTH.role !== j.role || AUTH.name !== j.name) { AUTH.role = j.role; AUTH.name = j.name || AUTH.name; saveAuth(); applyRole(); }
+}
+
+// ── login flow ───────────────────────────────────────────────
+function authStep(s) {
+  document.querySelectorAll('.auth-step').forEach(e => e.classList.remove('on'));
+  document.getElementById('as-' + s).classList.add('on');
+  document.getElementById('aErr1').textContent = ''; document.getElementById('aErr2').textContent = '';
+  if (s === 'email') setTimeout(() => document.getElementById('aEmail').focus(), 50);
+  if (s === 'code') { document.getElementById('aCode').value = ''; setTimeout(() => document.getElementById('aCode').focus(), 50); }
+}
+function showLogin() { document.getElementById('authOv').classList.add('open'); applyRole(); authStep('email'); }
+function hideLogin() { document.getElementById('authOv').classList.remove('open'); }
+function busy(id, on, txt) { const b = document.getElementById(id); b.disabled = on; if (txt) b.textContent = txt; }
+
+async function authStart(resend) {
+  const err = document.getElementById('aErr1');
+  const email = (resend ? authEmail : document.getElementById('aEmail').value).trim().toLowerCase();
+  const nameEl = document.getElementById('aName');
+  if (!/^[^\s@'"<>]+@[^\s@'"<>]+\.[^\s@]{2,}$/.test(email)) { authStep('email'); err.textContent = 'اكتب بريداً إلكترونياً صحيحاً'; return; }
+  authEmail = email;
+  busy('aBtn1', true, 'جارٍ الإرسال...');
+  try {
+    const j = await api('start', {email, name: nameEl.style.display === 'none' ? '' : nameEl.value.trim()});
+    if (!j.success) throw new Error(j.error);
+    if (j.state === 'need_name') {
+      authStep('email');
+      nameEl.style.display = 'block'; nameEl.focus();
+      document.getElementById('aErr1').textContent = 'هذا الإيميل غير مسجل — اكتب اسمك لإرسال طلب دخول للمدير';
+      document.getElementById('aBtn1').textContent = 'إرسال طلب الدخول';
+      document.getElementById('aBtn1').disabled = false;
+      return;
+    }
+    if (j.state === 'pending') authStep('pending');
+    else if (j.state === 'rejected') authStep('rejected');
+    else if (j.state === 'code_sent') {
+      document.getElementById('aMailShow').textContent = email;
+      authStep('code');
+      if (resend) document.getElementById('aErr2').textContent = j.throttled ? 'انتظر دقيقة قبل طلب رمز جديد' : 'تم إرسال رمز جديد';
+    }
+  } catch (e) {
+    authStep('email');
+    document.getElementById('aErr1').textContent = e.message === 'invalid_email' ? 'اكتب بريداً إلكترونياً صحيحاً' : 'تعذّر الاتصال بالخادم، حاول مرة أخرى';
+  } finally {
+    const b = document.getElementById('aBtn1'); b.disabled = false;
+    if (nameEl.style.display === 'none') b.textContent = 'متابعة';
+  }
+}
+
+async function authVerify() {
+  const err = document.getElementById('aErr2');
+  const code = document.getElementById('aCode').value.replace(/\D/g, '');
+  if (code.length !== 6) { err.textContent = 'الرمز مكوّن من 6 أرقام'; return; }
+  busy('aBtn2', true, 'جارٍ التحقق...');
+  try {
+    const j = await api('verify', {email: authEmail, code});
+    if (!j.success) {
+      err.textContent = {wrong_code: 'الرمز غير صحيح' + (j.left ? ' — متبقٍ ' + j.left + ' محاولات' : ''),
+        code_expired: 'انتهت صلاحية الرمز، اطلب رمزاً جديداً', too_many_tries: 'محاولات كثيرة، اطلب رمزاً جديداً',
+        not_allowed: 'هذا الحساب غير مصرّح له'}[j.error] || 'حدث خطأ، حاول مرة أخرى';
+      return;
+    }
+    AUTH = {token: j.token, email: j.email, name: j.name, role: j.role};
+    saveAuth(); hideLogin(); applyRole();
+    toast('مرحباً ' + (j.name || j.email) + ' — صلاحيتك: ' + (ROLE_L[j.role] || j.role));
+    await loadFromSheet(); startAutoSync(); refreshPending();
+  } catch (e) { if (!e.isAuth) err.textContent = 'تعذّر الاتصال بالخادم'; }
+  finally { busy('aBtn2', false, 'دخول'); }
+}
+
+function authReset() {
+  AUTH = null; saveAuth();
+  if (syncTimer) { clearInterval(syncTimer); syncTimer = null; }
+  ST = {}; try { save(); } catch(e) {}
+  try { BLOCKS.forEach(b => refreshB(b.id)); colorAll(); updateStats(); } catch(e) {}
+  showLogin();
+}
+async function authLogout() {
+  if (!confirm('تسجيل الخروج؟')) return;
+  try { await api('logout'); } catch(e) {}
+  authReset();
+}
+
+// ── admin: users ─────────────────────────────────────────────
+let USERS = [];
+async function refreshPending() {
+  if (!isAdmin()) return;
+  try {
+    const j = await api('users'); if (!j.success) return;
+    USERS = j.users;
+    const n = USERS.filter(u => u.role === 'pending').length, b = document.getElementById('uPend');
+    b.textContent = n; b.style.display = n ? 'inline-block' : 'none';
+  } catch(e) {}
+}
+async function openUsers() {
+  document.getElementById('usrOv').classList.add('open');
+  document.getElementById('usrList').innerHTML = '<div style="padding:20px;text-align:center;color:var(--gray-500)">جارٍ التحميل...</div>';
+  await refreshPending(); renderUsers();
+}
+function closeUsers() { document.getElementById('usrOv').classList.remove('open'); }
+function renderUsers() {
+  const pend = USERS.filter(u => u.role === 'pending'), rest = USERS.filter(u => u.role !== 'pending');
+  const d = s => s ? new Date(s).toLocaleDateString('ar-SA') : '—';
+  const who = u => `<div class="usr-who"><b>${esc(u.name || '—')}</b><span>${esc(u.email)}</span></div>`;
+  let h = '';
+  if (pend.length) {
+    h += `<div class="usr-sec">طلبات بانتظار الموافقة (${pend.length})</div>`;
+    h += pend.map(u => `<div class="usr-row pend">${who(u)}
+      <button class="ub-view" onclick="setUserRole('${esc(u.email)}','view')">موافقة كمستعرض</button>
+      <button class="ub-edit" onclick="setUserRole('${esc(u.email)}','edit')">موافقة للتعديل</button>
+      <button class="ub-rej" onclick="setUserRole('${esc(u.email)}','rejected')">رفض</button></div>`).join('');
+  }
+  h += `<div class="usr-sec">المستخدمون (${rest.length})</div>`;
+  h += rest.map(u => {
+    const me = AUTH && u.email === AUTH.email;
+    return `<div class="usr-row">${who(u)}
+      <span style="font-size:11px;color:var(--gray-500)">آخر دخول: ${d(u.lastLogin)}</span>
+      ${me ? `<span class="u-role admin" style="font-size:12px;padding:4px 10px;border-radius:10px;background:#0d4a52;color:#fff">${ROLE_L[u.role]}</span>` :
+      `<select onchange="setUserRole('${esc(u.email)}',this.value)">${['view','edit','admin','rejected'].map(r => `<option value="${r}"${r === u.role ? ' selected' : ''}>${ROLE_L[r]}</option>`).join('')}</select>
+      <button class="ub-del" title="حذف المستخدم" onclick="if(confirm('حذف ${esc(u.email)}؟'))setUserRole('${esc(u.email)}','remove')">حذف</button>`}
+    </div>`;
+  }).join('') || '<div style="color:var(--gray-500);font-size:13px">لا يوجد مستخدمون</div>';
+  document.getElementById('usrList').innerHTML = h;
+}
+async function setUserRole(email, role) {
+  try {
+    const j = await api('setRole', {email, role});
+    if (!j.success) { toast(j.error === 'cannot_change_owner' ? 'لا يمكن تغيير صلاحية المدير الرئيسي' : 'تعذّر الحفظ'); return; }
+    toast(role === 'remove' ? 'تم الحذف' : 'تم الحفظ: ' + (ROLE_L[role] || role));
+    await refreshPending(); renderUsers();
+  } catch(e) { if (!e.isAuth) toast('تعذّر الاتصال'); }
+}
+
+// ── sync ─────────────────────────────────────────────────────
 function setSyncUI(state, text) {
   const el = document.getElementById('syncStatus');
   const dot = document.getElementById('syncDot');
@@ -1487,69 +1759,63 @@ function saveUrl() {
   loadFromSheet();
 }
 async function loadFromSheet(keepStatus) {
-  if(!sheetUrl) { setSyncUI('error','اضغط للإعداد'); return; }
+  if(!AUTH) { showLogin(); return; }
   if(!keepStatus) setSyncUI('syncing','جارٍ التزامن...');
   try {
-    const res = await fetch(sheetUrl + '?action=get&t=' + Date.now(), { method: 'GET', mode: 'cors', redirect: 'follow' });
-    const json = await res.json();
+    const json = await api('get');
     if(json.success && json.data) {
-      let changed=false;
-      Object.entries(json.data).forEach(([k,v]) => {
-        if(!k.startsWith(SK)) return;              // ignore statuses of the old numbering
-        const key=k.slice(SK.length);
-        if(ST[key]!==v){ST[key]=v;changed=true;}
-      });
-      if(changed){ save(); BLOCKS.forEach(b=>{const tb=document.getElementById('tb-'+b.id);if(tb&&tb.dataset.ready)fillTable(b.id);refreshB(b.id);}); colorAll(); updateStats(); renderInfo(); filterAll(); }
+      setRoleFromServer(json);
+      const fresh = {};
+      Object.entries(json.data).forEach(([k,v]) => { if(k.startsWith(SK)) fresh[k.slice(SK.length)] = v; });
+      const changed = JSON.stringify(fresh) !== JSON.stringify(ST);
+      if(changed){ ST = fresh; save(); BLOCKS.forEach(b=>{const tb=document.getElementById('tb-'+b.id);if(tb&&tb.dataset.ready)fillTable(b.id);refreshB(b.id);}); colorAll(); updateStats(); renderInfo(); filterAll(); }
     }
     if(!keepStatus) setSyncUI('synced', 'متزامن ✓');
   } catch(e) {
+    if(e.isAuth) return;
     if(!keepStatus) setSyncUI('error', 'غير متصل بالشيت');
     console.warn('Sheet read failed', e);
   }
 }
 async function saveToSheet(key, status) {
-  if(!sheetUrl) return;
+  if(!AUTH) return;
   setSyncUI('syncing','جارٍ الحفظ...');
   try {
-    const url = sheetUrl + '?action=set&key=' + encodeURIComponent(SK+key) + '&status=' + encodeURIComponent(status);
-    const res = await fetch(url, {method:'GET', redirect:'follow'});
-    const json = await res.json();
+    const json = await api('set', {key: SK+key, status});
     if(!json.success) throw new Error(json.error||'save failed');
     setSyncUI('synced','محفوظ ✓');
   } catch(e) {
+    if(e.isAuth) return;
     setSyncUI('error','فشل الحفظ — تحقق من الاتصال');
-    loadFromSheet(true);   // revert to the shared state in the sheet
+    loadFromSheet(true);
   }
 }
 async function bulkSaveToSheet(updates) {
-  if(!sheetUrl || !Object.keys(updates).length) return;
+  if(!AUTH || !Object.keys(updates).length) return;
   setSyncUI('syncing','جارٍ الحفظ...');
   try {
-    // split into chunks so the URL never gets too long
-    const ent=Object.entries(updates);
-    for(let i=0;i<ent.length;i+=40){
-      const params = ent.slice(i,i+40).map(([k,v])=>encodeURIComponent(k)+'='+encodeURIComponent(v)).join('&');
-      const res = await fetch(sheetUrl + '?action=bulk&' + params, {method:'GET', redirect:'follow'});
-      const json = await res.json();
-      if(!json.success) throw new Error(json.error||'save failed');
-    }
+    const json = await api('bulk', {updates});
+    if(!json.success) throw new Error(json.error||'save failed');
     setSyncUI('synced','محفوظ ✓');
   } catch(e) {
+    if(e.isAuth) return;
     setSyncUI('error','فشل الحفظ — تحقق من الاتصال');
     loadFromSheet(true);
   }
 }
 function startAutoSync() {
   if(syncTimer) clearInterval(syncTimer);
-  if(!sheetUrl) return;
-  syncTimer = setInterval(loadFromSheet, 30000);
+  if(!AUTH) return;
+  syncTimer = setInterval(() => { loadFromSheet(); if (isAdmin()) refreshPending(); }, 30000);
 }
 document.addEventListener('DOMContentLoaded', () => {
+  applyRole();
+  if (!AUTH) { ST = {}; showLogin(); return; }
   setSyncUI('syncing','جارٍ التزامن...');
   loadFromSheet().then(startAutoSync);
+  refreshPending();
 });
-// refresh as soon as the user comes back to the tab/app (phones pause timers)
-document.addEventListener('visibilitychange', () => { if(document.visibilityState==='visible') loadFromSheet(); });
+document.addEventListener('visibilitychange', () => { if(document.visibilityState==='visible' && AUTH) loadFromSheet(); });
 
 </script>
 </body>
